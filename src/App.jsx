@@ -12,7 +12,7 @@ const App = () => {
   const startPosRef = useRef(null)
   const draggingRef = useRef({ id: null, offsetX: 0, offsetY: 0 })
   const isDragging = useRef(false)
-  const dragMoved = useRef(false) // track if mouse moved after mouseDown
+  const dragMoved = useRef(false) 
 
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF'
@@ -93,7 +93,6 @@ const App = () => {
   }
 
   const handleSplit = () => {
-    // Only split if NOT dragging and mouse did NOT move (click without drag)
     if (isDragging.current || dragMoved.current) return
 
     const splitX = mousePos.x
@@ -157,7 +156,7 @@ const App = () => {
           return
         }
 
-        // Horizontal split
+        
         if (intersectH && pill.height > MIN_SIZE * 2) {
           const topHeight = splitY - pill.y
           const bottomHeight = pill.height - topHeight
@@ -194,7 +193,6 @@ const App = () => {
           return
         }
 
-        // Too small to split, move aside
         newPills.push({ ...pill, x: pill.x + 10, y: pill.y + 10 })
       })
 
@@ -226,7 +224,7 @@ const App = () => {
         <Pill key={pill.id} pill={pill} onDrag={handleDragStart} />
       ))}
 
-      {/* Split lines */}
+      
       <div
         className="absolute top-0 h-full w-[4px] bg-red-500 opacity-50 pointer-events-none"
         style={{ left: mousePos.x - 2 }}
